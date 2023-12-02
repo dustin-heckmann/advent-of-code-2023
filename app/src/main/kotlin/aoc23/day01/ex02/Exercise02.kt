@@ -2,6 +2,12 @@ package aoc23.day01.ex02
 
 import util.readResourceFile
 
+fun main() {
+    val input = readResourceFile("/day01/input.txt")
+    val result = calibrationValuesSum(input)
+    println(result)
+}
+
 val wordsToDigits = mapOf(
     "one" to 1,
     "two" to 2,
@@ -38,9 +44,3 @@ fun findDigitInStringWithTransformation(line: String, transform: (String) -> Str
 }
 
 fun List<String>.toOrGroupRegex() = joinToString("|", "(", ")").toRegex()
-
-fun main() {
-    val input = readResourceFile("/day01/input.txt")
-    val result = calibrationValuesSum(input)
-    println(result)
-}
