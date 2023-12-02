@@ -11,7 +11,7 @@ fun main() {
 fun sumOfSmallestSuperSetPowers(input: String) =
     input
         .lineSequence()
-        .map { it.split(": ")[1] }
+        .map { it.substringAfter(": ") }
         .map { it.split("; ").map(CubeSet::fromString) }
         .map { it.reduce(CubeSet::smallestCommonSuperSetWith) }
         .sumOf { it.power() }
