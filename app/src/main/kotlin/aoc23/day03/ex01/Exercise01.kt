@@ -22,10 +22,10 @@ private fun getNumbersByCoordinate(input: String): Map<Coordinate, IdentityNumbe
     return input
         .lineSequence()
         .map { numberRegex.findAll(it) }
-        .flatMapIndexed { row, matches ->
+        .flatMapIndexed { rowIndex, matches ->
             matches.flatMap { match ->
                 val number = IdentityNumber(match.value.toInt())
-                match.range.map { column -> Coordinate(row, column) to number }
+                match.range.map { columnIndex -> Coordinate(rowIndex, columnIndex) to number }
             }
         }
         .toMap()
@@ -34,12 +34,13 @@ private fun getNumbersByCoordinate(input: String): Map<Coordinate, IdentityNumbe
 private fun getPotentialPartNumberCoordinates(input: String) =
     input
         .lineSequence()
-        .flatMapIndexed { row, line ->
+        .flatMapIndexed { rowIndex, line ->
             line
                 .toCharArray()
                 .withIndex()
                 .filter { it.value.isSymbol() }
-                .map { (column, _) -> Coordinate(row, column) }
+                .map { it.index }
+                .map { columnIndex -> Coordinate(rowIndex, columnIndex) }
                 .flatMap { it.adjacentCoordinates() }
         }
         .toSet()

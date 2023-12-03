@@ -23,10 +23,10 @@ private fun getNumbersByCoordinate(input: String): Map<Coordinate, Int> {
     return input
         .lineSequence()
         .map { numberRegex.findAll(it) }
-        .flatMapIndexed { row, matches ->
+        .flatMapIndexed { rowIndex, matches ->
             matches.flatMap { match ->
                 val number = match.value.toInt()
-                match.range.map { column -> Coordinate(row, column) to number }
+                match.range.map { columnIndex -> Coordinate(rowIndex, columnIndex) to number }
             }
         }
         .toMap()
@@ -35,11 +35,12 @@ private fun getNumbersByCoordinate(input: String): Map<Coordinate, Int> {
 private fun getAsteriskAdjacentCoordinateLists(input: String): Sequence<List<Coordinate>> =
     input
         .lineSequence()
-        .flatMapIndexed { row, line ->
+        .flatMapIndexed { rowIndex, line ->
             line
                 .toCharArray()
                 .withIndex()
                 .filter { it.value == '*' }
-                .map { (column, _) -> Coordinate(row, column) }
+                .map { it.index }
+                .map { columnIndex -> Coordinate(rowIndex, columnIndex) }
                 .map { it.adjacentCoordinates() }
         }
