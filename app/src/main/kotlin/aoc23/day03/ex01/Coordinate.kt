@@ -7,5 +7,6 @@ data class Coordinate(val rowIndex: Int, val columnIndex: Int) {
                 Coordinate(rowIndex + rowDelta, columnIndex + columnDelta)
             }
         }
+            .filterNot { it == this }
             .filterNot { it.columnIndex < 0 || it.rowIndex < 0 }
 }
