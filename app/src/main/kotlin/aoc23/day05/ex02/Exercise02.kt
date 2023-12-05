@@ -10,11 +10,7 @@ suspend fun main() {
 }
 
 suspend fun lowestLocationNumber(input: String): Long {
-    val mappings = Regex(":\\n([\\d \\n]+)")
-        .findAll(input)
-        .map { it.groups[1]!!.value.trim() }
-        .map { Mapping.of(it) }
-        .toList()
+    val mappings = extractMappings(input)
 
     return input
         .lineSequence()
@@ -26,6 +22,13 @@ suspend fun lowestLocationNumber(input: String): Long {
         .mapParallel { (start, length) -> minOfRange(start, length, mappings) }
         .min()
 }
+
+private fun extractMappings(input: String): List<Mapping> =
+    Regex(":\\n([\\d \\n]+)")
+        .findAll(input)
+        .map { it.groups[1]!!.value.trim() }
+        .map { Mapping.of(it) }
+        .toList()
 
 fun minOfRange(start: Long, length: Long, mappings: List<Mapping>): Long =
     (start until start + length)
