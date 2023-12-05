@@ -28,3 +28,4 @@ build
 .idea
 
 app/src/main/resources/*/input.txt
+app/src/main/resources/cookie.txt

@@ -1,9 +1,9 @@
 package aoc23.day04.ex01
 
-import util.readResourceFile
+import util.getPuzzleInputForDay
 
 fun main() {
-    val input = readResourceFile("/day04/input.txt")
+    val input = getPuzzleInputForDay(4)
     val result = sumOfCardPoints(input)
     println(result)
 }

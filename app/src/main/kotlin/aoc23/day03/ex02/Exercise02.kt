@@ -1,9 +1,9 @@
 package aoc23.day03.ex02
 
-import util.readResourceFile
+import util.getPuzzleInputForDay
 
 fun main() {
-    val input = readResourceFile("/day03/input.txt")
+    val input = getPuzzleInputForDay(3)
     val result = sumOfGearRatios(input)
     println(result)
 }

@@ -1,11 +1,11 @@
 package aoc23.day02.ex01
 
-import util.readResourceFile
+import util.getPuzzleInputForDay
 
 val REFERENCE_CUBE_SET = CubeSet(red = 12, green = 13, blue = 14)
 
 fun main() {
-    val input = readResourceFile("/day02/input.txt")
+    val input = getPuzzleInputForDay(2)
     val result = sumOfPossibleGameIds(input)
     println(result)
 }

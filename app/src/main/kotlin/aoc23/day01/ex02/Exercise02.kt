@@ -1,9 +1,9 @@
 package aoc23.day01.ex02
 
-import util.readResourceFile
+import util.getPuzzleInputForDay
 
 fun main() {
-    val input = readResourceFile("/day01/input.txt")
+    val input = getPuzzleInputForDay(1)
     val result = calibrationValuesSum(input)
     println(result)
 }

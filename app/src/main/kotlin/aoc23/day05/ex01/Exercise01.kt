@@ -1,9 +1,9 @@
 package aoc23.day05.ex01
 
-import util.readResourceFile
+import util.getPuzzleInputForDay
 
 fun main() {
-    val input = readResourceFile("/day05/input.txt")
+    val input = getPuzzleInputForDay(5)
     val result = lowestLocationNumber(input)
     println(result)
 }

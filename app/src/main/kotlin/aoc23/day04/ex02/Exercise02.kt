@@ -1,9 +1,9 @@
 package aoc23.day04.ex02
 
-import util.readResourceFile
+import util.getPuzzleInputForDay
 
 fun main() {
-    val input = readResourceFile("/day04/input.txt")
+    val input = getPuzzleInputForDay(4)
     val result = numberOfScratchcardsWon(input)
     println(result)
 }

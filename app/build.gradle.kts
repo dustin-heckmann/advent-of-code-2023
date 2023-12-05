@@ -17,6 +17,8 @@ dependencies {
 
     implementation(libs.guava)
     implementation(libs.kotlin.coroutines)
+    implementation("io.ktor:ktor-client-core:2.0.1")
+    implementation("io.ktor:ktor-client-cio:2.0.1")
 }
 
 application {

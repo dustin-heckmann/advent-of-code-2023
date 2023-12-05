@@ -1,9 +1,9 @@
 package aoc23.day03.ex01
 
-import util.readResourceFile
+import util.getPuzzleInputForDay
 
 fun main() {
-    val input = readResourceFile("/day03/input.txt")
+    val input = getPuzzleInputForDay(3)
     val result = sumOfEnginePartNumbers(input)
     println(result)
 }

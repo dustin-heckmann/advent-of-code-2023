@@ -1,10 +1,12 @@
 package aoc23.day05.ex02
 
-import kotlinx.coroutines.*
-import util.readResourceFile
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
+import kotlinx.coroutines.coroutineScope
+import util.getPuzzleInputForDay
 
 suspend fun main() {
-    val input = readResourceFile("/day05/input.txt")
+    val input = getPuzzleInputForDay(5)
     val result = lowestLocationNumber(input)
     println(result)
 }

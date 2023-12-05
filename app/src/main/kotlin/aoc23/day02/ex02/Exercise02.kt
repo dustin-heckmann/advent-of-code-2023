@@ -1,9 +1,9 @@
 package aoc23.day02.ex02
 
-import util.readResourceFile
+import util.getPuzzleInputForDay
 
 fun main() {
-    val input = readResourceFile("/day02/input.txt")
+    val input = getPuzzleInputForDay(2)
     val result = sumOfSmallestSuperSetPowers(input)
     println(result)
 }
