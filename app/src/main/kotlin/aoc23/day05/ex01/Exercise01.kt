@@ -29,6 +29,6 @@ private fun extractSeeds(input: String): List<Long> =
     input
         .lineSequence()
         .first()
-        .substringAfter(": ")
+        .removePrefix("seeds: ")
         .split(" ")
         .map { it.toLong() }

@@ -22,7 +22,7 @@ private fun extractSeedRanges(input: String): List<LongRange> =
     input
         .lineSequence()
         .first()
-        .substringAfter(": ")
+        .removePrefix("seeds: ")
         .split(" ")
         .map { it.toLong() }
         .chunked(2)
