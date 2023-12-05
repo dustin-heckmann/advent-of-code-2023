@@ -7,9 +7,10 @@ data class MappingRange(val destinationStart: Long, val sourceStart: Long, val l
         destinationStart + (source - sourceStart)
 
     companion object {
-        fun of(string: String) = string
-            .split(" ")
-            .map { it.toLong() }
-            .let { MappingRange(it[0], it[1], it[2]) }
+        fun of(string: String) =
+            string
+                .split(" ")
+                .map { it.toLong() }
+                .let { MappingRange(it[0], it[1], it[2]) }
     }
 }

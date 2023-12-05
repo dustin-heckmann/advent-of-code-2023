@@ -10,11 +10,12 @@ fun main() {
 
 fun lowestLocationNumber(input: String): Long {
     val mappings = extractMappings(input)
-    return extractSeeds(input).minOf { seed ->
-        mappings.fold(seed) { source, mapping ->
-            mapping.mapToDestination(source)
+    return extractSeeds(input)
+        .minOf { seed ->
+            mappings.fold(seed) { source, mapping ->
+                mapping.mapToDestination(source)
+            }
         }
-    }
 }
 
 private fun extractMappings(input: String): List<Mapping> =

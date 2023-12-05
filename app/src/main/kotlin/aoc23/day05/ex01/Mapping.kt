@@ -8,9 +8,10 @@ data class Mapping(private val ranges: List<MappingRange>) {
             ?: source
 
     companion object {
-        fun of(string: String) = string
-            .lines()
-            .map { MappingRange.of(it) }
-            .let { Mapping(it) }
+        fun of(string: String) =
+            string
+                .lines()
+                .map { MappingRange.of(it) }
+                .let { Mapping(it) }
     }
 }
