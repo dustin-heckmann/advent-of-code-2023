@@ -1,3 +1,5 @@
+import org.gradle.internal.impldep.org.bouncycastle.asn1.iana.IANAObjectIdentifiers.experimental
+
 plugins {
     alias(libs.plugins.jvm)
 
@@ -16,6 +18,7 @@ dependencies {
     testImplementation(libs.kotest.assertions)
 
     implementation(libs.guava)
+    implementation(libs.kotlin.coroutines)
 }
 
 application {
