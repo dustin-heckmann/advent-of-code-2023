@@ -9,22 +9,25 @@ fun main() {
 }
 
 fun lowestLocationNumber(input: String): Long {
-    val seeds = input
-        .lineSequence()
-        .first()
-        .substringAfter(": ")
-        .split(" ")
-        .map { it.toLong() }
+    val mappings = extractMappings(input)
+    return extractSeeds(input).minOf { seed ->
+        mappings.fold(seed) { source, mapping ->
+            mapping.mapToDestination(source)
+        }
+    }
+}
 
-    val mappings = Regex(":\\n([\\d \\n]+)")
+private fun extractMappings(input: String): List<Mapping> =
+    Regex(":\\n([\\d \\n]+)")
         .findAll(input)
         .map { it.groups[1]!!.value.trim() }
         .map { Mapping.of(it) }
         .toList()
 
-    return seeds.minOf { seed ->
-        mappings.fold(seed) { acc, mapping ->
-            mapping.mapToDestination(acc)
-        }
-    }
-}
+private fun extractSeeds(input: String): List<Long> =
+    input
+        .lineSequence()
+        .first()
+        .substringAfter(": ")
+        .split(" ")
+        .map { it.toLong() }
