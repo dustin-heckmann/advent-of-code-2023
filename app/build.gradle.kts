@@ -19,6 +19,7 @@ dependencies {
     implementation(libs.kotlin.coroutines)
     implementation("io.ktor:ktor-client-core:2.0.1")
     implementation("io.ktor:ktor-client-cio:2.0.1")
+    implementation("org.jsoup:jsoup:1.13.1")
 }
 
 application {

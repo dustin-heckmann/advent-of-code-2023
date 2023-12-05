@@ -20,6 +20,15 @@ internal fun writeResourceFile(resourcePath: String, content: String) {
     file.writeText(content)
 }
 
+internal fun writeTestResourceFile(resourcePath: String, content: String) {
+    val filePath = Path("src/test/resources$resourcePath")
+    val file = File(filePath.absolutePathString())
+    file.parentFile.mkdirs()
+    file.createNewFile()
+    file.writeText(content)
+}
+
+
 internal fun resourceFileExists(path: String): Boolean {
     return object {}
         .javaClass

@@ -6,9 +6,12 @@ import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import io.ktor.http.*
 import kotlinx.coroutines.runBlocking
+import org.jsoup.Jsoup
+import org.jsoup.nodes.Document
+import org.jsoup.nodes.Element
 
 fun getPuzzleInputForDay(day: Int): String {
-    val resourcePath = "/day${day.toString().padStart(2, '0')}/input.txt"
+    val resourcePath = "/day${pad(day)}/input.txt"
     if (!resourceFileExists(resourcePath)) {
         return runBlocking {
             val input = fetchAdventOfCodeInput(day)
@@ -17,6 +20,25 @@ fun getPuzzleInputForDay(day: Int): String {
         }
     }
     return readResourceFile(resourcePath)
+}
+
+fun getExampleInputForDay(day: Int): String {
+    val resourcePath = "/examples/day${pad(day)}/input.txt"
+    if (!resourceFileExists(resourcePath)) {
+        return runBlocking {
+            val input = fetchAdventOfCodeExampleInput(day)
+            writeTestResourceFile(resourcePath, input)
+            input
+        }
+    }
+    return readResourceFile(resourcePath)
+}
+
+suspend fun fetchAdventOfCodeExampleInput(day: Int): String {
+    val client = HttpClient(CIO)
+    val response: HttpResponse = client.get("https://adventofcode.com/2023/day/$day")
+    client.close()
+    return extractLargestCodeTagContent(response.bodyAsText())
 }
 
 suspend fun fetchAdventOfCodeInput(day: Int): String {
@@ -33,3 +55,11 @@ suspend fun fetchAdventOfCodeInput(day: Int): String {
     client.close()
     return response.bodyAsText().trimEnd()
 }
+
+fun extractLargestCodeTagContent(html: String): String {
+    val doc: Document = Jsoup.parse(html)
+    val codeTags: List<Element> = doc.select("code").toList()
+    return codeTags.maxByOrNull { it.text().length }?.text() ?: ""
+}
+
+private fun pad(day: Int) = day.toString().padStart(2, '0')
