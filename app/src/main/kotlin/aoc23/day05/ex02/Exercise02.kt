@@ -3,30 +3,28 @@ package aoc23.day05.ex02
 import kotlinx.coroutines.*
 import util.readResourceFile
 
-fun main() {
+suspend fun main() {
     val input = readResourceFile("/day05/input.txt")
     val result = lowestLocationNumber(input)
     println(result)
 }
 
-fun lowestLocationNumber(input: String): Long {
+suspend fun lowestLocationNumber(input: String): Long {
     val mappings = Regex(":\\n([\\d \\n]+)")
         .findAll(input)
         .map { it.groups[1]!!.value.trim() }
         .map { Mapping.of(it) }
         .toList()
 
-    return runBlocking(Dispatchers.Default) {
-        input
-            .lineSequence()
-            .first()
-            .substringAfter(": ")
-            .split(" ")
-            .map { it.toLong() }
-            .chunked(2)
-            .mapParallel { (start, length) -> minOfRange(start, length, mappings) }
-            .min()
-    }
+    return input
+        .lineSequence()
+        .first()
+        .substringAfter(": ")
+        .split(" ")
+        .map { it.toLong() }
+        .chunked(2)
+        .mapParallel { (start, length) -> minOfRange(start, length, mappings) }
+        .min()
 }
 
 fun minOfRange(start: Long, length: Long, mappings: List<Mapping>): Long =
