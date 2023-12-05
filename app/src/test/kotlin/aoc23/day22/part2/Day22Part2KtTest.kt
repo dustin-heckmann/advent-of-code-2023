@@ -10,4 +10,3 @@ class Day22Part2KtTest : ShouldSpec({
         day22Part2(input) shouldBe 0
     }
 })
-

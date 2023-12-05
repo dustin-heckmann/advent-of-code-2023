@@ -3,7 +3,6 @@ package aoc23.day05.ex01
 import io.kotest.core.spec.style.ShouldSpec
 import io.kotest.matchers.shouldBe
 import util.getExampleInputForDay
-import util.readResourceFile
 
 class Exercise01KtTest : ShouldSpec({
 

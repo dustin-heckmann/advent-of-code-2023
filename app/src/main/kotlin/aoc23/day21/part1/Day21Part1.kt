@@ -9,4 +9,3 @@ fun main() {
 }
 
 fun day21Part1(input: String): Int = 0
-

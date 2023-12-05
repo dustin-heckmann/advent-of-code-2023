@@ -28,7 +28,6 @@ internal fun writeTestResourceFile(resourcePath: String, content: String) {
     file.writeText(content)
 }
 
-
 internal fun resourceFileExists(path: String): Boolean {
     return object {}
         .javaClass
