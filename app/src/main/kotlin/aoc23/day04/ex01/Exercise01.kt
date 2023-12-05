@@ -12,6 +12,5 @@ fun sumOfCardPoints(input: String): Int {
     return input
         .lineSequence()
         .map { Scratchcard.of(it) }
-        .map { it.points() }
-        .sum()
+        .sumOf { it.points() }
 }
