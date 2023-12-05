@@ -11,7 +11,6 @@ suspend fun main() {
 
 suspend fun lowestLocationNumber(input: String): Long {
     val mappings = extractMappings(input)
-
     return input
         .lineSequence()
         .first()
@@ -19,7 +18,8 @@ suspend fun lowestLocationNumber(input: String): Long {
         .split(" ")
         .map { it.toLong() }
         .chunked(2)
-        .mapParallel { (start, length) -> minOfRange(start, length, mappings) }
+        .map { (start, length) -> start until start + length }
+        .mapParallel { range -> minOfRange(range, mappings) }
         .min()
 }
 
@@ -30,8 +30,8 @@ private fun extractMappings(input: String): List<Mapping> =
         .map { Mapping.of(it) }
         .toList()
 
-fun minOfRange(start: Long, length: Long, mappings: List<Mapping>): Long =
-    (start until start + length)
+fun minOfRange(range: LongRange, mappings: List<Mapping>): Long =
+    range
         .minOf { seed ->
             mappings.fold(seed) { acc, mapping ->
                 mapping.mapToDestination(acc)
