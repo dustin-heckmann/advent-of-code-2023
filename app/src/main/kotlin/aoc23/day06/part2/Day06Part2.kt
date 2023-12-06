@@ -8,4 +8,14 @@ fun main() {
     println(result)
 }
 
-fun day06Part2(input: String): Int = 0
+fun day06Part2(input: String): Int {
+    val (raceDuration, recordDistance) = input.lines()
+        .map { it.split(Regex(" +")) }
+        .map { it.drop(1) }
+        .map { it.joinToString("") }
+        .map { it.toLong() }
+
+    return (1L until raceDuration)
+        .map { chargeDuration -> (raceDuration - chargeDuration) * chargeDuration }
+        .count { it > recordDistance }
+}
