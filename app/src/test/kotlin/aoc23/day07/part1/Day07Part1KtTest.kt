@@ -7,6 +7,6 @@ import util.getExampleInputForDay
 class Day07Part1KtTest : ShouldSpec({
     should("should return correct value for example") {
         val input = getExampleInputForDay(7)
-        day07Part1(input) shouldBe 0
+        day07Part1(input) shouldBe 6440
     }
 })

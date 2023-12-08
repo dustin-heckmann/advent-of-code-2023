@@ -8,4 +8,10 @@ fun main() {
     println(result)
 }
 
-fun day07Part1(input: String): Int = 0
+fun day07Part1(input: String): Int =
+    input
+        .lineSequence()
+        .map { Hand.of(it) }
+        .sorted()
+        .withIndex()
+        .sumOf { (index, hand) -> (index + 1) * hand.bid }
